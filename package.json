@@ -3,19 +3,24 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "start": "nodemon ./bin/www",
+    "dict-setup": "node ./dict/xml-processor.js"
   },
   "dependencies": {
     "body-parser": "~1.17.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.3",
     "express": "~4.15.2",
-    "morgan": "~1.8.1"
+    "morgan": "~1.8.1",
+    "mysql": "^2.15.0"
   },
   "devDependencies": {
     "eslint": "^4.11.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.8.0",
-    "nodemon": "^1.12.1"
+    "jsonify": "0.0.0",
+    "mysq2l-migrations": "^1.0.4",
+    "nodemon": "^1.12.1",
+    "xml2json": "^0.11.0"
   }
 }
