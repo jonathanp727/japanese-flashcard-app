@@ -14,7 +14,13 @@ module.exports = {
     });
   },
 
+  query(querystring, callback) {
+    con.query(querystring, (err, result) => {
+      callback(err, result);
+    });
+  },
+
   getDb() {
     return con;
-  },
+  }
 };

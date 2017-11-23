@@ -34,7 +34,7 @@ server.on('listening', onListening);
 /**
  * Create mysql pool
  */
-require('../helpers/dbPool').connectToServer();
+require('../helpers/dbUtil').connectToServer();
 
 /**
  * Normalize a port into a number, string, or false.
