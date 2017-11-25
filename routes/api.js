@@ -9,6 +9,8 @@ router.use('/login', require('./login'));
 router.use(middlewares.authenticate);
 
 router.use('/user', require('./user'));
+router.use('/deck', require('./deck'));
+router.use('/flashcard', require('./flashcard'));
 
 router.get('/', (req, res) => {
   res.json({ success: true });

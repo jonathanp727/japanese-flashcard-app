@@ -1,16 +1,19 @@
 const express = require('express');
-const user = require('../models/user.js');
+const deck = require('../models/deck.js');
 
 const router = express.Router();
 
 // index
 router.get('/', (req, res, next) => {
-  // if (!req.decoded.isAdmin) {
-  //   const error = new Error('Access Denied: Admins only');
-  //   error.status = 401;
-  //   return next(error);
-  // }
-  user.all((err, value) => {
+  deck.all((err, value) => {
+    if (err) return next(err);
+    res.json(value);
+  });
+});
+
+// get all decks for a user
+router.get('/deck/:id', (req, res, next) => {
+  deck.user(req.params.id, (err, value) => {
     if (err) return next(err);
     res.json(value);
   });
@@ -18,7 +21,7 @@ router.get('/', (req, res, next) => {
 
 // show
 router.get('/:id', (req, res, next) => {
-  user.get(req.params.id, (err, value) => {
+  deck.get(req.params.id, (err, value) => {
     if (err) return next(err);
     res.json(value);
   });
@@ -26,7 +29,7 @@ router.get('/:id', (req, res, next) => {
 
 // new
 router.post('/', (req, res, next) => {
-  user.new(req.body.username, req.body.password, false, (err) => {
+  deck.new(req.body.name, req.body.userId, (err) => {
     if (err) return next(err);
     res.json({ success: true });
   });
@@ -34,7 +37,7 @@ router.post('/', (req, res, next) => {
 
 // update
 router.put('/:id', (req, res, next) => {
-  user.update(req.params.id, req.body.username, req.body.password, (err) => {
+  deck.update(req.params.id, req.body.name, req.body.userId, (err) => {
     if (err) return next(err);
     res.json({ success: true });
   });
@@ -42,7 +45,7 @@ router.put('/:id', (req, res, next) => {
 
 // delete
 router.delete('/:id', (req, res, next) => {
-  user.delete(req.params.id, (err) => {
+  deck.delete(req.params.id, (err) => {
     if (err) return next(err);
     res.json({ success: true });
   });
