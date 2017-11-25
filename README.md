@@ -1,2 +1,2 @@
-__Environmental Variables__
-⋅⋅* JWT_KEY
+__Environmental Variables__  
+* JWT_KEY
