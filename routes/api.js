@@ -9,6 +9,7 @@ router.use('/login', require('./login'));
 router.use(middlewares.authenticate);
 
 router.use('/user', require('./user'));
+router.use('/dict', require('./dict'));
 router.use('/deck', require('./deck'));
 router.use('/flashcard', require('./flashcard'));
 
