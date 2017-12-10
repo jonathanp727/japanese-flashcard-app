@@ -17,12 +17,17 @@ router.post('/', (req, res, next) => {
     }
     const hashResult = cryptoUtil.getHashFromSalt(req.body.password, user.salt);
     if (user.password !== hashResult) {
-      const error = new Error('Authentication failed. User not found.');
+      const error = new Error('Authentication failed. Wrong password.');
       error.status = 401;
       return next(error);
     }
     const token = jwt.sign({ user }, process.env.JWT_KEY);
-    res.json({ success: true, message: 'Authenticated', token });
+    res.json({
+      success: true,
+      message: 'Authenticated',
+      token,
+      id: user.id
+    });
   });
 });
 

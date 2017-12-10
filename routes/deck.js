@@ -12,7 +12,7 @@ router.get('/', (req, res, next) => {
 });
 
 // get all decks for a user
-router.get('/deck/:id', (req, res, next) => {
+router.get('/user/:id', (req, res, next) => {
   deck.user(req.params.id, (err, value) => {
     if (err) return next(err);
     res.json(value);
@@ -29,9 +29,9 @@ router.get('/:id', (req, res, next) => {
 
 // new
 router.post('/', (req, res, next) => {
-  deck.new(req.body.name, req.body.userId, (err) => {
+  deck.new(req.body.name, req.body.userId, (err, result) => {
     if (err) return next(err);
-    res.json({ success: true });
+    res.json({ id: result.insertId });
   });
 });
 
