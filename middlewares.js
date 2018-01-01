@@ -22,4 +22,13 @@ module.exports = {
       next(error);
     }
   },
+  setHeaders(req, res, next) {
+    // Websites allowed to connect
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8080');
+    // Allowed methods
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    // Allowed headers
+    res.setHeader('Access-Control-Allow-Headers', 'x-access-token, content-type');
+    next();
+  }
 };

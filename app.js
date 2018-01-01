@@ -14,6 +14,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(require('./middlewares.js').setHeaders);
+
 app.use('/api', api);
 
 // catch 404 and forward to error handler
